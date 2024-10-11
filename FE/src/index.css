@@ -6,3 +6,7 @@ html {
     scroll-behavior: smooth; /* Enables smooth scrolling */
   }
   
+  body {
+    background: linear-gradient(to bottom right, #6D9773, #0C3B2E);
+  }
+  

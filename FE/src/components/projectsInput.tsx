@@ -1,11 +1,11 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { useProjectsStore } from '../store/projectsStore';
 
 interface ProjectsInputProps {
-  onClose: () => void; // Add the onClose prop to handle closing the modal
+  onClose: () => void;
 }
 
-const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept the prop
+const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => {
   const { createProject } = useProjectsStore();
   const [newProject, setNewProject] = useState({ title: '', description: '', imageUrl: '' });
 
@@ -13,23 +13,17 @@ const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept
     e.preventDefault();
     await createProject(newProject);
     setNewProject({ title: '', description: '', imageUrl: '' });
-    onClose(); // Close the form after submission
+    onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"> {/* Modal overlay */}
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-96"> {/* Modal background */}
-        {/* Close Button */}
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-96">
         <button className="absolute top-2 right-2 text-2xl text-gray-400 hover:text-white transition" onClick={onClose}>
           &times;
         </button>
-
-        {/* Modal Title */}
         <h2 className="text-2xl font-bold mb-4 text-white">Create Project</h2>
-
-        {/* Form */}
         <form onSubmit={handleSubmit}>
-          {/* Title Field */}
           <div className="mb-4">
             <label className="block mb-2 text-gray-400">Title</label>
             <input
@@ -40,8 +34,6 @@ const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept
               className="input input-bordered w-full bg-gray-700 text-white border-gray-600 placeholder-gray-500"
             />
           </div>
-
-          {/* Description Field */}
           <div className="mb-4">
             <label className="block mb-2 text-gray-400">Description</label>
             <textarea
@@ -51,8 +43,6 @@ const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept
               className="textarea textarea-bordered w-full bg-gray-700 text-white border-gray-600 placeholder-gray-500"
             />
           </div>
-
-          {/* Image URL Field */}
           <div className="mb-4">
             <label className="block mb-2 text-gray-400">Image URL</label>
             <input
@@ -63,8 +53,6 @@ const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept
               className="input input-bordered w-full bg-gray-700 text-white border-gray-600 placeholder-gray-500"
             />
           </div>
-
-          {/* Submit Button */}
           <div className="flex justify-end">
             <button type="submit" className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white">
               Add Project
@@ -77,4 +65,3 @@ const ProjectsInput: React.FC<ProjectsInputProps> = ({ onClose }) => { // Accept
 };
 
 export default ProjectsInput;
-  

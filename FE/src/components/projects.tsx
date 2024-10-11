@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useProjectsStore } from '../store/projectsStore';
 import { FaPlusCircle } from "react-icons/fa";
-import ProjectsInput from './projectsInput'; // Import ProjectsInput
+import ProjectsInput from './projectsInput';
 
 interface Project {
   id: number;
@@ -13,23 +13,15 @@ interface Project {
 const Projects: React.FC = () => {
   const { projects, fetchProjects } = useProjectsStore();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isInputVisible, setIsInputVisible] = useState(false); // State to control ProjectsInput visibility
+  const [isInputVisible, setIsInputVisible] = useState(false);
 
   useEffect(() => {
-    fetchProjects();  // Call fetchProjects when the component mounts
+    fetchProjects();
   }, [fetchProjects]);
 
-  const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-  };
-
-  const closeModal = () => {
-    setSelectedProject(null);
-  };
-
-  const toggleInputForm = () => {
-    setIsInputVisible((prev) => !prev); // Toggle the visibility of the ProjectsInput
-  };
+  const handleProjectClick = (project: Project) => setSelectedProject(project);
+  const closeModal = () => setSelectedProject(null);
+  const toggleInputForm = () => setIsInputVisible(prev => !prev);
 
   return (
     <div className="p-4">
@@ -37,11 +29,11 @@ const Projects: React.FC = () => {
         <h2 className="text-2xl font-bold mr-2">Projects</h2>
         <FaPlusCircle 
           className="text-3xl cursor-pointer text-blue-500 hover:text-blue-700"
-          onClick={toggleInputForm} // Trigger the ProjectsInput on click
+          onClick={toggleInputForm}
         />
       </div>
 
-      {isInputVisible && <ProjectsInput onClose={toggleInputForm} />} {/* Conditionally render the ProjectsInput */}
+      {isInputVisible && <ProjectsInput onClose={toggleInputForm} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map((project: Project) => (

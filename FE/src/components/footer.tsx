@@ -4,27 +4,28 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const email = "your-email@example.com";
+  const githubUrl = "https://github.com/yourusername";
 
   return (
-    <footer className="p-6 text-center shadow-md bg-gray-900 text-white"> {/* Added shadow for consistency */}
+    <footer className="p-6 text-center shadow-md bg-gray-900 text-white">
       <div className="text-sm">
         <p className="font-semibold">© {currentYear} Your Name. All rights reserved.</p>
-        <div className="flex justify-center space-x-6 mt-2"> {/* Increased space between links */}
+        <div className="flex justify-center space-x-6 mt-2">
           <a 
-            href="mailto:your-email@example.com" 
+            href={`mailto:${email}`} 
             className="hover:underline transition duration-300 ease-in-out" 
           >
             Email
           </a>
           <a 
-            href="https://github.com/yourusername" 
+            href={githubUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
             className="hover:underline transition duration-300 ease-in-out" 
           >
             GitHub
           </a>
-          {/* Add other contact methods or social media links here */}
         </div>
       </div>
     </footer>

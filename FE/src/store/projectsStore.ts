@@ -16,9 +16,8 @@ interface ProjectsState {
 
 export const useProjectsStore = create<ProjectsState>((set) => ({
   projects: [],
-
+  
   fetchProjects: async () => {
-    console.log('Fetching projects from API...');
     const response = await axios.get<Project[]>('http://localhost:5000/api/projects');
     set({ projects: response.data });
   },

@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
     <div className="w-64 bg-base-100 fixed left-0 top-1/2 bg-gray-900 text-white transform -translate-y-1/2 p-4">
       <ul className="menu flex flex-col items-center">
         {navItems.map(({ id, label }) => (
-          <li key={id} className="py-2"> {/* Add some padding for better spacing */}
+          <li key={id} className="py-2">
             <span
               className="cursor-pointer text-white hover:text-gray-200 transition-transform transform hover:scale-105"
               onClick={() => scrollToSection(id)}
