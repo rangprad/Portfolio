@@ -3,7 +3,6 @@ const router = express.Router();
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Create a new project
 router.post('/', async (req, res) => {
   const { title, description, imageUrl } = req.body;
   try {
@@ -20,7 +19,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all projects
 router.get('/', async (req, res) => {
   try {
     const projects = await prisma.project.findMany();
@@ -30,7 +28,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Update a project
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { title, description, imageUrl } = req.body;
@@ -45,7 +42,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a project
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {

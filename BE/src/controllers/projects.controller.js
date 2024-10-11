@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Fetch all projects
 exports.getProjects = async (req, res) => {
   try {
     const projects = await prisma.project.findMany();
@@ -12,11 +11,9 @@ exports.getProjects = async (req, res) => {
   }
 };
 
-// Create a new project
 exports.createProject = async (req, res) => {
   const { title, description, imageUrl } = req.body;
 
-  // Validate input
   if (!title || !description || !imageUrl) {
     return res.status(400).json({ error: 'All fields (title, description, imageUrl) are required' });
   }
@@ -25,9 +22,9 @@ exports.createProject = async (req, res) => {
     const newProject = await prisma.project.create({
       data: { title, description, imageUrl },
     });
-    res.status(201).json(newProject);  // Return 201 for successful creation
+    res.status(201).json(newProject);  
   } catch (error) {
-    console.error('Error creating project:', error);  // Log error for debugging
+    console.error('Error creating project:', error);  
     res.status(500).json({ error: 'Failed to create project' });
   }
 };
